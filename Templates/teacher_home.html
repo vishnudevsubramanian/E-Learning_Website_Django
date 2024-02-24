@@ -1,0 +1,126 @@
+{% load static %}
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: silver;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+        .notification {
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.notification:hover {
+  background: silver;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -00px;
+  right: -00px;
+  padding: 3px 8px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+</style>
+</head>
+<body background="{% static 'summer-morning-mist_00435416.jpg' %}">
+
+<ul>
+  <li><a href="{% url 'th_update_profile' %}">Update Profile</a></li>
+  <li><a href="{% url 'st_pr' %}">Student Progress</a></li>
+   <li><button  class="notification" onclick="location.href='{% url 'stu_buk_acc' %}'"><span>Student booked details<i class="fa fa-caret-down"></i></span>
+       <a href="{% url 'notiffy' %}" class="badge">{% if count > 0 %}{{count}}{% else %}0{% endif %}</a></button></li>
+  <li><a href="{% url 'change_password' %}">Change Password</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Topics</a>
+    <div class="dropdown-content">
+      <a href="{% url 'subject_tr' %}">Subject</a>
+      <a href="{% url 'tr_chapter' %}">Chapter</a>
+         <a href="{% url 'ch_co_tr' %}">Chapter Content</a>
+    </div>
+  </li>
+  <li><a href="{% url 'contact' %}">Contact</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Exam</a>
+    <div class="dropdown-content">
+      <a href="{% url 'sched_test' %}">Shedule Exam</a>
+      <a href="{% url 'delete_test' %}">Delete Shedule</a>
+      <a href="{% url 'exam_result' %}">Exam Result</a>
+    </div>
+  </li>
+     <li><a href="{% url 'm_m1' %}">Messages</a></li>
+     <li><a href="{% url 'atten' %}">Give Attendance</a></li>
+    <li><a href="{% url 'logout' %}" onclick="return confirm('Are you sure?')">Logout</a></li>
+
+  </ul>
+ <div style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+            <script>
+                alert('{{ msg }}')
+            </script>
+            {% endfor %}
+        {% endif %}
+ </div>
+<center><h1 style="color:silver">Teacher home</h1></center>
+</body>
+</html>

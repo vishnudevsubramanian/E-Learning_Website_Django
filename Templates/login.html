@@ -1,0 +1,45 @@
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+.tdStyle
+{
+background-repeat:no-repeat;
+background-size:cover;
+}
+label
+{ float: center; width: 10em; margin-right: 1em; }
+</style>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!--<link rel="stylesheet" type="text/css" href={% static 'trt.css' %}>-->
+</head>
+<!--style="background-repeat: no-repeat; background-size: 1300px 700px"-->
+<body class="tdStyle"  background="{% static 'uaturfg.jpg' %}">
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="container" align="center">
+        <h1>Login</h1>
+        <div style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+            <script>
+                alert('{{ msg }}')
+            </script>
+            {% endfor %}
+        {% endif %}
+        </div>
+
+                <label for="first_name"><b>Username</b></label><br><br>
+                <input type="text" size="25" placeholder="Enter Username" name="ussn" required><br><br>
+                <label for="last_name"><b>Password</b></label><br><br>
+                <input type="password" size="25" placeholder="Enter lastname" name="pword" required><br><br>
+                <button type="submit" class="registerbtn">Login</button>
+                <button type="reset" class="registerbtn">Reset</button>
+        </div>
+</form>
+<div align="center">
+   <button type="submit" onclick="location.href='{% url 'home' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

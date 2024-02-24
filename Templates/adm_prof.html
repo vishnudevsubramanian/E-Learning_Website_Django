@@ -1,0 +1,49 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Profile</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'table1.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+<body class="pic" background="{% static 'Ex9MlTC.jpg' %}">
+<div align="center">
+<h1 style="color:red;font:;">Admin profile</h1>
+<div style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table border="2" cellpadding="30">
+    <tr>
+        <th style="font-size:15pt">First Name</th>
+        <th style="font-size:15pt">Last Name</th>
+        <th style="font-size:15pt">Email</th>
+        <th style="font-size:15pt">Password</th>
+        <th style="font-size:15pt">Image</th>
+        <th style="font-size:15pt">Registration date</th>
+    </tr>
+    {% for i in gtt %}
+    <tr>
+                <td style="font-size:15pt">{{i.First_name}}</td>
+                <td style="font-size:15pt">{{i.Last_name}}</td>
+                <td style="font-size:15pt">{{i.Email}}</td>
+                <td style="font-size:15pt">{{i.Password}}</td>
+                <td style="font-size:15pt"><img src="media/{{i.Image}}" width="150"></td>
+                <td style="font-size:15pt">{{i.Registration_date}}</td>
+    </tr>
+</table><br>
+    <center>
+                    <button onclick="window.location.href = '{% url 'del_admin' i.id %}';">Resign from administration</button>
+                    <button onclick="window.location.href = '{% url 'edit_admin' %}';">Edit my profile</button><br><br>
+                    <button onclick="window.location.href = '{% url 'admin_home' %}';">Back</button>
+    </center>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

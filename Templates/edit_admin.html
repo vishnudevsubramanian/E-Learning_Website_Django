@@ -1,0 +1,32 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Profile Updation</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'images/lying-yoga.jpg' %}">
+<div align="center">
+    <h2><center>Profile Update</center></h2>
+<form action="{% url 'tnb' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+       <label>First name:</label><br><br>
+        <input type="text" value="{{bb1.First_name}}" name="first"><br><br>
+        <label>Last name:</label><br><br>
+        <input type="text" value="{{bb1.Last_name}}" name="last"><br><br>
+        <label>Email:</label><br><br>
+        <input type="text" value="{{bb1.Email}}" name="em"><br><br>
+        <label>Image:</label><br><br>
+        <img src="media/{{bb1.Image}}" width="150"><br><br>
+        <input type="file" name="photo1"><br><br>
+        <input type="hidden" name="photo" value="{{bb1.Image}}"><br><br>
+        <input type="submit" value="submit">&nbsp&nbsp&nbsp&nbsp
+        <input type="reset" value="cancel">
+</form>
+</div><br>
+<div align="center">
+    <button type="submit" onclick="location.href='{% url 'teacher_home' %}'">Back</button>
+</div>
+</body>
+</html>
